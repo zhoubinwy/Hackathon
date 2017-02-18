@@ -7,13 +7,14 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.net.Uri;
 
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity
-        implements ControlFragment.OnFragmentInteractionListener ,ResultFragment.OnResultFragmentListener{
+        implements ControlFragment.OnFragmentInteractionListener ,ResultFragment.OnResultFragmentListener,DisplayFragment.OnDisplayFragmentListener{
 
     String TAG="MainActivity";
     RemoteController remoteController;
@@ -34,6 +35,14 @@ public class MainActivity extends AppCompatActivity
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         ControlFragment fragment=new ControlFragment();
         fragmentTransaction.add(R.id.main_container,(Fragment)fragment);
+
+        String[] perms = {"android.permission.WRITE_EXTERNAL_STORAGE","android.permission.VIBRATE"};
+
+        int permsRequestCode = 200;
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            requestPermissions(perms, permsRequestCode);
+        }
 
 
     }
@@ -71,6 +80,20 @@ public class MainActivity extends AppCompatActivity
         transaction.commit();
     }
 
+    public void show_display_fragment(View v){
+        DisplayFragment newFragment = new DisplayFragment();
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+//        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.main_container, newFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+
+
+
+
 
     @Override
     public void onControlSelected(String command) {
@@ -93,5 +116,10 @@ public class MainActivity extends AppCompatActivity
 
         Log.d(TAG,"result fragment interaction");
 
+    }
+
+    @Override
+    public void onDisplayFragmentInteraction(Uri uri) {
+        Log.d(TAG,"Display fragment interaction");
     }
 }

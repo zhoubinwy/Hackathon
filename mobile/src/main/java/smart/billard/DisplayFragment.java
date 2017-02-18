@@ -5,42 +5,32 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
-import android.os.Environment;
-import android.text.format.Time;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
-
- * Use the {@link ResultFragment#newInstance} factory method to
+ * {@link DisplayFragment.OnFragmentInteractionListener} interface
+ * to handle interaction events.
+ * Use the {@link DisplayFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ResultFragment extends Fragment {
+public class DisplayFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    String TAG="ResultFragment";
-
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
-    private OnResultFragmentListener mListener;
+    private OnDisplayFragmentListener mListener;
 
-    public ResultFragment() {
+    public DisplayFragment() {
         // Required empty public constructor
     }
 
@@ -50,11 +40,11 @@ public class ResultFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment ResultFragment.
+     * @return A new instance of fragment DisplayFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ResultFragment newInstance(String param1, String param2) {
-        ResultFragment fragment = new ResultFragment();
+    public static DisplayFragment newInstance(String param1, String param2) {
+        DisplayFragment fragment = new DisplayFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -65,7 +55,6 @@ public class ResultFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -76,62 +65,21 @@ public class ResultFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-//        TextView tv=(TextView)container.findViewById(R.id.results);
-//        tv.setText("asdfasdfl;kajsdf");
-        return inflater.inflate(R.layout.fragment_result, container, false);
-    }
-
-    @Override
-    public void onStart(){
-        super.onStart();
-
-        TextView tv=(TextView) getActivity().findViewById(R.id.results);
-        tv.setText("asdfasdfadsf");
-
-        String baseDir= Environment.getExternalStorageDirectory().getAbsolutePath();
-
-        String file_name=baseDir+"/result.csv";
-
-        Log.d(TAG,"file name "+file_name);
-
-        File file=new File(file_name);
-
-        StringBuilder text = new StringBuilder();
-
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(file));
-            String line;
-
-            while ((line = br.readLine()) != null) {
-                text.append(line);
-                text.append('\n');
-            }
-            br.close();
-        }
-        catch (IOException e) {
-            //You'll need to add proper error handling here
-        }
-
-
-        Log.d(TAG,text.toString());
-//Set the text
-        tv.setText(text.toString());
-
-
+        return inflater.inflate(R.layout.fragment_display, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.OnResultFragmentListener(uri);
+            mListener.onDisplayFragmentInteraction(uri);
         }
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnResultFragmentListener) {
-            mListener = (OnResultFragmentListener) context;
+        if (context instanceof OnDisplayFragmentListener) {
+            mListener = (OnDisplayFragmentListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -154,8 +102,8 @@ public class ResultFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnResultFragmentListener {
+    public interface OnDisplayFragmentListener {
         // TODO: Update argument type and name
-        void OnResultFragmentListener(Uri uri);
+        void onDisplayFragmentInteraction(Uri uri);
     }
 }

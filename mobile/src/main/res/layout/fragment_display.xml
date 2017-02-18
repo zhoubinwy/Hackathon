@@ -2,13 +2,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="smart.billard.ResultFragment">
+    tools:context="smart.billard.DisplayFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/results"
-        android:text=" " />
+        android:text="@string/hello_blank_fragment" />
 
 </FrameLayout>
