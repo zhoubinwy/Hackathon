@@ -260,40 +260,28 @@ public class StrokeAnalysis {
     }
 
     private void writeFile(String path) {
-        File file = new File(path + "result.txt");
+        File file = new File(path + "result.csv");
         FileWriter fstream;
         try {
             fstream = new FileWriter(file);
+            StringBuilder sb = new StringBuilder();
+            sb.append("shootNumber" + "," + "1\n");
+            sb.append("mainAccAverage" + "," + this.getMainAccAverage() + "\n");
+            sb.append("mainAccPeak" + "," + this.getMaxAcc() + "\n");
+            sb.append("lateralSwayAverage" + "," + this.getSideSway() + "\n");
+            sb.append("verticalSwayAverage" + "," + this.getUpDownSway() + "\n");
+            sb.append("mainAccRatio" + "," + this.getMajorAccRatio() + "\n");
+            sb.append("forwardStartTime" + "," + this.getStartTime() + "\n");
+            sb.append("hitBallTime" + "," + this.getHitTime() + "\n");
+            sb.append("forwardDuration" + "," + (this.getHitTime() - this.getStartTime()) + "\n");
+            sb.append("deaccelerationDuration" + "," + (this.getStopTime() - this.getHitTime()) + "\n");
+            sb.append("strokeScore" + "," + this.getScore() + "\n");
+            sb.append("rollAngle" + "," + this.getStartRollAngle() + " ~ " + this.getHitRollAngle() + "\n");
+            sb.append("lateralAngle" + "," + this.getStartLateralAngle() + " ~ " + this.getHitLateralAngle() + "\n");
+            sb.append("verticalAngle" + "," + this.getStartVerticalAngle() + " ~ " + this.getHitVertialAngle() + "\n");
+
             BufferedWriter out = new BufferedWriter(fstream);
-            out.write("shootNumber: " + 1);
-            out.newLine();
-            out.write("mainAccAverage: " + this.getMainAccAverage());
-            out.newLine();
-            out.write("mainAccPeak: " + this.getMaxAcc());
-            out.newLine();
-            out.write("lateralSwayAverage: "+ this.getSideSway());
-            out.newLine();
-            out.write("verticalSwayAverage: " + this.getUpDownSway());
-            out.newLine();
-            out.write("mainAccRatio: " + this.getMajorAccRatio());
-            out.newLine();
-            out.write("forwardStartTime: " + this.getStartTime());
-            out.newLine();
-            out.write("hitBallTime: " + this.getHitTime());
-            out.newLine();
-            out.write("stopTime: " + this.getStopTime());
-            out.newLine();
-            out.write("forwardDuration: " + (this.getHitTime() - this.getStartTime()));
-            out.newLine();
-            out.write("deaccelerationDuration: " + (this.getStopTime() - this.getHitTime()));
-            out.newLine();
-            out.write("strokeScore: " + this.getScore());
-            out.newLine();
-            out.write("rollAngle: " + this.getStartRollAngle() + " ~ " + this.getHitRollAngle());
-            out.newLine();
-            out.write("lateralAngle: " + this.getStartLateralAngle() + " ~ " + this.getHitLateralAngle());
-            out.newLine();
-            out.write("vertialAngle: " + this.getStartVerticalAngle() + " ~ " + this.getHitVertialAngle());
+            out.write(sb.toString());
             out.close();
         } catch (IOException e) {
             // TODO Auto-generated catch block
