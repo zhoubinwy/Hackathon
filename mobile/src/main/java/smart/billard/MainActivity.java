@@ -2,10 +2,12 @@ package smart.billard;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
+    String TAG="MainActivity";
     RemoteController remoteController;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -13,6 +15,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         remoteController=new RemoteController();
+
+        Log.d(TAG, "Start the day!");
     }
 
     boolean is_remote_on=false;
