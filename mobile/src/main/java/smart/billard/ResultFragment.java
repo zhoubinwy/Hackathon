@@ -90,7 +90,7 @@ public class ResultFragment extends Fragment {
 
         String baseDir= Environment.getExternalStorageDirectory().getAbsolutePath();
 
-        String file_name=baseDir+"/result.csv";
+        String file_name=baseDir+"/billiard_data/result.csv";
 
         Log.d(TAG,"file name "+file_name);
 

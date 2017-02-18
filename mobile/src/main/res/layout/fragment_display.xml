@@ -1,13 +1,24 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="smart.billard.DisplayFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
-</FrameLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Acceleration Curve"/>
+
+    <smart.billard.DisplayView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="#e0e0e0"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="8dp"
+        android:id="@+id/display_view"/>
+
+</LinearLayout>
