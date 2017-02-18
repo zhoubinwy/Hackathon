@@ -296,8 +296,8 @@ public class StrokeAnalysis {
         try {
             fstream = new FileWriter(file);
             StringBuilder sb = new StringBuilder();
-            for (float f : this.getAccX())
-                sb.append(f + "\n");
+            for (int i = 0; i < acc_x.size(); i++)
+                sb.append(i / 50.0 + "," + acc_x.get(i) + "\n");
 
             BufferedWriter out = new BufferedWriter(fstream);
             out.write(sb.toString());
