@@ -13,6 +13,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import smart.billard.data_process.DataProcessor;
+
 public class MainActivity extends AppCompatActivity
         implements ControlFragment.OnFragmentInteractionListener ,ResultFragment.OnResultFragmentListener,DisplayFragment.OnDisplayFragmentListener{
 
@@ -58,6 +60,13 @@ public class MainActivity extends AppCompatActivity
             remoteController.stopCollection();
             is_remote_on=false;
         }
+    }
+
+
+    public  void onDataProcess(View v){
+        DataProcessor dp=new DataProcessor();
+        dp.process();
+        Log.d(TAG,"begin to process data");
     }
 
     public void show_analyze_fragment(View v){
