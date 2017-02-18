@@ -38,6 +38,7 @@ public class StrokeAnalysis {
         // Write files
         String outPath = "sdcard/billiard_data/";
         writeFile(outPath);
+        writeAccFile(outPath);
     }
 
     // Score the stroke
@@ -279,6 +280,24 @@ public class StrokeAnalysis {
             sb.append("rollAngle" + "," + this.getStartRollAngle() + " ~ " + this.getHitRollAngle() + "\n");
             sb.append("lateralAngle" + "," + this.getStartLateralAngle() + " ~ " + this.getHitLateralAngle() + "\n");
             sb.append("verticalAngle" + "," + this.getStartVerticalAngle() + " ~ " + this.getHitVertialAngle() + "\n");
+
+            BufferedWriter out = new BufferedWriter(fstream);
+            out.write(sb.toString());
+            out.close();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    private void writeAccFile(String path) {
+        File file = new File(path + "curveData.csv");
+        FileWriter fstream;
+        try {
+            fstream = new FileWriter(file);
+            StringBuilder sb = new StringBuilder();
+            for (float f : this.getAccX())
+                sb.append(f + "\n");
 
             BufferedWriter out = new BufferedWriter(fstream);
             out.write(sb.toString());
