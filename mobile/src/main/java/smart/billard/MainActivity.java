@@ -13,7 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-import smart.billard.data_process.DataProcessor;
+import smart.billard.data_process.StrokeAnalysis;
 
 public class MainActivity extends AppCompatActivity
         implements ControlFragment.OnFragmentInteractionListener ,ResultFragment.OnResultFragmentListener,DisplayFragment.OnDisplayFragmentListener{
@@ -64,7 +64,8 @@ public class MainActivity extends AppCompatActivity
 
 
     public  void onDataProcess(View v){
-        DataProcessor dp=new DataProcessor();
+        String path = "sdcard/billiard_data/";
+        StrokeAnalysis dp=new StrokeAnalysis(path);
         dp.process();
         Log.d(TAG,"begin to process data");
     }
