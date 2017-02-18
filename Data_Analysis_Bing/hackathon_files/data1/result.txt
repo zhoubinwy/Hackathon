@@ -1,0 +1,10 @@
+mainAccAverage 21.311085
+mainAccPeak 46.589203
+horizontalSwayAverage 11.609063
+VerticalSwayAverage 6.2907143
+mainAccRatio 0.772097
+forwardStartTime 1.12
+hitBallTime 1.32
+stopTime 1.78
+forwardDuration 0.20000005
+deaccelerationDuration 0.45999992

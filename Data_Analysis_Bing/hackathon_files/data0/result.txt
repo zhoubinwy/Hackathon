@@ -1,0 +1,15 @@
+shootNumber: 1
+mainAccAverage: 7.707462
+mainAccPeak: 24.730469
+lateralSwayAverage: 6.557897
+verticalSwayAverage: 2.0641265
+mainAccRatio: 0.62130815
+forwardStartTime: 1.68
+hitBallTime: 1.96
+stopTime: 2.38
+forwardDuration: 0.2800001
+deaccelerationDuration: 0.42000008
+strokeScore: 100
+rollAngle: -0.2561961 ~ 0.096939065
+lateralAngle: -0.39388153 ~ -1.0815097
+vertialAngle: 0.69055766 ~ 2.2644858
