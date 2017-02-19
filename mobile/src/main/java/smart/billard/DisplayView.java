@@ -100,7 +100,21 @@ public class DisplayView extends View {
         height_span=height_span*(float)2.1;
 
 
-        paint.setStrokeWidth(4);
+        paint.setTextSize(50f);
+        // x label
+        canvas.drawText("0.0", 60, height-5, paint);
+        canvas.drawText(""+time.size()/4/50.0, 15 + width/4, height-5, paint);
+        canvas.drawText(""+time.size()/2/50.0, 15 + width/2, height-5, paint);
+        canvas.drawText(""+3*time.size()/4/50.0, 3*width/4, height-5, paint);
+        canvas.drawText(""+time.size()/50.0, width - 15, height-5, paint);
+        // y label
+        canvas.drawText(""+(int)(height_span/2.1), 20, height - 50, paint);
+        canvas.drawText(""+(int)(height_span/4.2), 20, 3*height/4, paint);
+        canvas.drawText(""+0, 20, height/2, paint);
+        canvas.drawText("-"+(int)(height_span/4.2), 20, height/4, paint);
+        canvas.drawText("-"+(int)(height_span/2.1), 20, 50, paint);
+
+        paint.setStrokeWidth(5);
         for(int i=1;i<time.size();i++){
             float prev_x=(time.get(i-1)-time.get(0))/time_span*width;
             float prev_y=-(acc.get(i-1))/height_span*height+height/2;
