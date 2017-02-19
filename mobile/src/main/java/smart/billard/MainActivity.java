@@ -5,6 +5,7 @@ import android.app.FragmentManager;
 
 
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.net.Uri;
 
 import android.os.Build;
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity
 
         setContentView(R.layout.activity_main);
 
-        remoteController=new RemoteController();
+        remoteController=new RemoteController(this);
 
         Log.d(TAG, "Start the day!");
 
@@ -45,6 +46,8 @@ public class MainActivity extends AppCompatActivity
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             requestPermissions(perms, permsRequestCode);
         }
+
+        startService(new Intent(this, SensorReceiverService.class));
 
 
     }
@@ -119,6 +122,15 @@ public class MainActivity extends AppCompatActivity
 
     public void onSwitchFragment(View v){
         Log.d(TAG,"public void onSwitchFragment(View v) clicked");
+
+        if(!is_remote_on){
+            remoteController.startCollection();
+            is_remote_on=true;
+        }
+        else{
+            remoteController.stopCollection();
+            is_remote_on=false;
+        }
     }
 
     @Override

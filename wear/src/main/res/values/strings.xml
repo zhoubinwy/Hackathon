@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Billard</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="hello_world">Hello World!</string>
 </resources>
