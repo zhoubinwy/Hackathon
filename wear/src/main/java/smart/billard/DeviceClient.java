@@ -34,7 +34,7 @@ import smart.shared.DataMapKeys;
 
 public class DeviceClient {
     private static final String TAG = "DeviceClient";
-    private static final int CLIENT_CONNECTION_TIMEOUT = 15000;
+    private static final int CLIENT_CONNECTION_TIMEOUT = 25000;
 
     private boolean is_filter_on=true;
 
@@ -71,6 +71,16 @@ public class DeviceClient {
         executorService = Executors.newCachedThreadPool();
         lastSensorData = new SparseLongArray();
 
+        file_count=7;
+
+//        ConnectionResult connectionResult =
+//                googleApiClient.blockingConnect(30, TimeUnit.SECONDS);
+//
+//        if (!connectionResult.isSuccess()) {
+//            Log.e(TAG, "Failed to connect to GoogleApiClient.");
+//            return;
+//        }
+
     }
 
 
@@ -81,6 +91,8 @@ public class DeviceClient {
 
 
     public void transfer_all_files (File dir) {
+
+        sendFileCount();
         if (dir.exists()) {
             File[] files = dir.listFiles();
             for (int i = 0; i < files.length; ++i) {
@@ -121,7 +133,7 @@ public class DeviceClient {
                             PendingResult<DataApi.DataItemResult> pendingResult = Wearable.DataApi
                                     .putDataItem(googleApiClient, putDataRequest);
 
-                            DataApi.DataItemResult result = pendingResult.await(2000, TimeUnit.MILLISECONDS);
+                            DataApi.DataItemResult result = pendingResult.await(5000, TimeUnit.MILLISECONDS);
                             if(result.getStatus().isSuccess()) {
                                 Log.d(TAG, "Data item set: " + result.getDataItem().getUri());
 
@@ -132,6 +144,10 @@ public class DeviceClient {
                             else if(result.getStatus().isInterrupted()){
                                 Log.d(TAG, "Data item interrupted: " + result.getDataItem().getUri());
                             }
+                            else{
+                                Log.d(TAG, "Data item : " + result.getStatus());
+                            }
+
 
 
 
@@ -297,6 +313,7 @@ public class DeviceClient {
 
 
     public void sendFileCount() {
+        Log.d(TAG,"send file count");
         final int file_count=get_file_count();
         executorService.submit(new Runnable() {
             @Override

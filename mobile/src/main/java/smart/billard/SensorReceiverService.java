@@ -74,11 +74,9 @@ public class SensorReceiverService extends WearableListenerService {
 
 
                     String file_name=DataMapItem.fromDataItem(dataItem).getDataMap().getString(DataMapKeys.DATAFILENAME);
-                    String folder_name=DataMapItem.fromDataItem(dataItem).getDataMap().getString(DataMapKeys.DATAFOLDERNAME);
-//                    File temp_file=new File(file_name);
-//                    File folder_creater=new File(folder_name);
+
                     File storage_media = Environment.getExternalStorageDirectory();
-                    File folder_creater = new File(storage_media.getAbsolutePath() + "/mag_uncali/"+folder_name);
+                    File folder_creater = new File(storage_media.getAbsolutePath() + "/billiard_data/");
                     String folder_creater_string=folder_creater.getAbsolutePath();
 
 
@@ -117,9 +115,7 @@ public class SensorReceiverService extends WearableListenerService {
                         }
                         Log.d(TAG, "file name : " + folder_creater_string + file_name);
                         File myFile = new File(folder_creater_string+"/"+file_name);
-                        if(myFile.isFile()){
-                            return;
-                        }else{
+
                             String path_sound=folder_creater_string+"/"+file_name;
                             FileOutputStream output = new FileOutputStream(path_sound);
                             int bufferSize = 1024;
@@ -130,7 +126,7 @@ public class SensorReceiverService extends WearableListenerService {
                             }
 
 
-                        }
+
 
 
 

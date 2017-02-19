@@ -10,6 +10,7 @@ import android.os.Environment;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.widget.RatingBar;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -108,11 +109,11 @@ public class DisplayView extends View {
         canvas.drawText(""+3*time.size()/4/50.0, 3*width/4, height-5, paint);
         canvas.drawText(""+time.size()/50.0, width - 15, height-5, paint);
         // y label
-        canvas.drawText(""+(int)(height_span/2.1), 20, height - 50, paint);
-        canvas.drawText(""+(int)(height_span/4.2), 20, 3*height/4, paint);
+        canvas.drawText("-"+(int)(height_span/2.1), 35, height - 50, paint);
+        canvas.drawText("-"+(int)(height_span/4.2), 35, 3*height/4, paint);
         canvas.drawText(""+0, 20, height/2, paint);
-        canvas.drawText("-"+(int)(height_span/4.2), 20, height/4, paint);
-        canvas.drawText("-"+(int)(height_span/2.1), 20, 50, paint);
+        canvas.drawText(""+(int)(height_span/4.2), 30, height/4, paint);
+        canvas.drawText(""+(int)(height_span/2.1), 30, 50, paint);
 
         paint.setStrokeWidth(5);
         for(int i=1;i<time.size();i++){
@@ -125,6 +126,9 @@ public class DisplayView extends View {
             paint.setColor(Color.RED);
             canvas.drawLine(prev_x,prev_y,cur_x,cur_y, paint);
         }
+
+        RatingBar bar = (RatingBar) findViewById(R.id.ratingBar);
+//        bar.setNumStars(5);
 
     }
 
