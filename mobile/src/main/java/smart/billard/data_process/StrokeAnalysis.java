@@ -4,6 +4,7 @@ package smart.billard.data_process;
  * Created by harry on 2/18/17.
  */
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.BufferedWriter;
@@ -17,7 +18,10 @@ public class StrokeAnalysis {
     private float peakVelocity, peakAcc;   // peak velocity and acceleration of cue
     private String strokeType, hitPoint;   // classify stroke types, hitting points
     private float sideSway, upDownSway, qualityScore;  // score your stroke
-    private float fs = 50f;
+    private double fs = 50.0;
+    DecimalFormat format = new DecimalFormat("0.00");
+
+
 
     // Constructor function
     public StrokeAnalysis(String file_path) {
@@ -46,7 +50,7 @@ public class StrokeAnalysis {
         velocity = new ArrayList<>();
         velocity.add(0f);
         for (int i = 0; i < acc_x.size(); i++) {
-            velocity.add(velocity.get(i) + acc_x.get(i) / fs);
+            velocity.add(Float.parseFloat(format.format(velocity.get(i) + acc_x.get(i) / fs)));
         }
     }
 
@@ -96,7 +100,7 @@ public class StrokeAnalysis {
             x += Math.pow(acc_x.get(i), 2);
             total += Math.pow(acc_x.get(i), 2) + Math.pow(acc_y.get(i), 2) + Math.pow(acc_z.get(i), 2);
         }
-        return x / total;
+        return Float.parseFloat(format.format(x / total));
     }
 
     // Get side sway acc
@@ -104,7 +108,7 @@ public class StrokeAnalysis {
         float ans = 0f;
         for (int i = startTime; i < hitTime; i++)
             ans += Math.abs(acc_x.get(i));
-        return ans / (hitTime - startTime);
+        return Float.parseFloat(format.format(ans / (hitTime - startTime)));
     }
 
     // Get side sway acc
@@ -112,7 +116,7 @@ public class StrokeAnalysis {
         float ans = 0f;
         for (int i = startTime; i < hitTime; i++)
             ans += Math.abs(acc_y.get(i));
-        return ans / (hitTime - startTime);
+        return Float.parseFloat(format.format(ans / (hitTime - startTime)));
     }
 
     // Get upDownSway acc
@@ -120,7 +124,7 @@ public class StrokeAnalysis {
         float ans = 0f;
         for (int i = startTime; i < hitTime; i++)
             ans += Math.abs(acc_z.get(i));
-        return ans / (hitTime - startTime);
+        return Float.parseFloat(format.format(ans / (hitTime - startTime)));
     }
 
     // Get quality score
@@ -130,7 +134,7 @@ public class StrokeAnalysis {
 
     // Get max acc_x
     public float getMaxAcc() {
-        return acc_x.get(hitTime);
+        return Float.parseFloat(format.format(acc_x.get(hitTime)));
     }
 
     // Get functions
@@ -167,45 +171,45 @@ public class StrokeAnalysis {
     }
 
     public float getStartTime() {
-        return startTime / fs;
+        return Float.parseFloat(format.format(startTime / fs));
     }
 
     public float getHitTime() {
-        return hitTime / fs;
+        return Float.parseFloat(format.format(hitTime / fs));
     }
 
     public float getStopTime() {
-        return stopTime / fs;
+        return Float.parseFloat(format.format(stopTime / fs));
     }
 
     public float getStartRollAngle() {
-        return gyro_x.get(startTime);
+        return Float.parseFloat(format.format(gyro_x.get(startTime)));
     }
 
     public float getHitRollAngle() {
-        return gyro_x.get(hitTime);
+        return Float.parseFloat(format.format(gyro_x.get(hitTime)));
     }
 
     public float getStartLateralAngle() {
-        return gyro_y.get(startTime);
+        return Float.parseFloat(format.format(gyro_y.get(startTime)));
     }
 
     public float getHitLateralAngle() {
-        return gyro_y.get(hitTime);
+        return Float.parseFloat(format.format(gyro_y.get(hitTime)));
     }
 
     public float getStartVerticalAngle() {
-        return gyro_z.get(startTime);
+        return Float.parseFloat(format.format(gyro_z.get(startTime)));
     }
 
     public float getHitVertialAngle() {
-        return gyro_z.get(hitTime);
+        return Float.parseFloat(format.format(gyro_z.get(hitTime)));
     }
 
     // Read acc data from files
     private void initializeAcc(String file_path) {
         // path for files
-        String path = file_path + "acc_null.csv";
+        String path = file_path + "acc.csv";
         // arrayLists to store acceleration data
         acc_t = new ArrayList<>();
         acc_x = new ArrayList<>();
@@ -234,7 +238,7 @@ public class StrokeAnalysis {
     // Read gyro data from files
     private void initializeGyro(String file_path) {
         // path for files
-        String path = file_path + "gyro_null.csv";
+        String path = file_path + "gyro.csv";
         // arrayLists to store acceleration data
         gyro_t = new ArrayList<>();
         gyro_x = new ArrayList<>();
@@ -275,7 +279,7 @@ public class StrokeAnalysis {
             sb.append("forwardStartTime" + "," + this.getStartTime() + "\n");
             sb.append("hitBallTime" + "," + this.getHitTime() + "\n");
             sb.append("finishBallTime" + "," + this.getStopTime() + "\n");
-            sb.append("forwardDuration" + "," + (this.getHitTime() - this.getStartTime()) + "\n");
+            sb.append("forwardDuration" + "," + Float.parseFloat(format.format((this.getHitTime() - this.getStartTime()))) + "\n");
             sb.append("deaccelerationDuration" + "," + (this.getStopTime() - this.getHitTime()) + "\n");
             sb.append("rollAngle" + "," + this.getStartRollAngle() + " ~ " + this.getHitRollAngle() + "\n");
             sb.append("lateralAngle" + "," + this.getStartLateralAngle() + " ~ " + this.getHitLateralAngle() + "\n");
