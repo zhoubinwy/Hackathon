@@ -41,11 +41,6 @@ public class StrokeAnalysis {
         writeAccFile(outPath);
     }
 
-    // Score the stroke
-    public int getScore() {
-        return 100;
-    }
-
     // Integrate velocity
     private void integrateVelocity() {
         velocity = new ArrayList<>();
@@ -126,6 +121,11 @@ public class StrokeAnalysis {
         for (int i = startTime; i < hitTime; i++)
             ans += Math.abs(acc_z.get(i));
         return ans / (hitTime - startTime);
+    }
+
+    // Get quality score
+    public int getQualityScore() {
+        return (int)(this.getMajorAccRatio() * 120);
     }
 
     // Get max acc_x
@@ -280,7 +280,7 @@ public class StrokeAnalysis {
             sb.append("rollAngle" + "," + this.getStartRollAngle() + " ~ " + this.getHitRollAngle() + "\n");
             sb.append("lateralAngle" + "," + this.getStartLateralAngle() + " ~ " + this.getHitLateralAngle() + "\n");
             sb.append("verticalAngle" + "," + this.getStartVerticalAngle() + " ~ " + this.getHitVertialAngle() + "\n");
-            sb.append("strokeScore" + "," + this.getScore() + "\n");
+            sb.append("strokeScore" + "," + this.getQualityScore() + "\n");
             BufferedWriter out = new BufferedWriter(fstream);
             out.write(sb.toString());
             out.close();

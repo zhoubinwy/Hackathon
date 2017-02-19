@@ -222,7 +222,7 @@
 
         <TableRow>
             <TextView
-                android:text="Vertial Angle Range:"
+                android:text="Vertical Angle Range:"
                 android:padding="3dip"
             android:textSize="16sp"
             android:textStyle="normal|bold" />
@@ -241,7 +241,7 @@
 
         <TableRow>
             <TextView
-                android:text="Shoke Quality Score:"
+                android:text="Stroke Quality Score:"
                 android:padding="3dip"
                 android:textSize="16sp"
                 android:textStyle="normal|bold" />
@@ -252,7 +252,8 @@
                 android:padding="3dip"
                 android:textSize="16sp"
                 android:textStyle="normal|bold"
-                android:id="@+id/result14" />
+                android:id="@+id/result14"
+                android:textColor="@color/colorAccent" />
         </TableRow>
     </TableLayout>
 
