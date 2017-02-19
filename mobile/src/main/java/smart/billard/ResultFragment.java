@@ -17,6 +17,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -85,8 +87,6 @@ public class ResultFragment extends Fragment {
     public void onStart(){
         super.onStart();
 
-        TextView tv=(TextView) getActivity().findViewById(R.id.results);
-        tv.setText("asdfasdfadsf");
 
         String baseDir= Environment.getExternalStorageDirectory().getAbsolutePath();
 
@@ -96,15 +96,13 @@ public class ResultFragment extends Fragment {
 
         File file=new File(file_name);
 
-        StringBuilder text = new StringBuilder();
+        List<String> text = new ArrayList<>();
 
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
             String line;
-
             while ((line = br.readLine()) != null) {
-                text.append(line);
-                text.append('\n');
+                text.add(line.split(",")[1]);
             }
             br.close();
         }
@@ -112,10 +110,37 @@ public class ResultFragment extends Fragment {
             //You'll need to add proper error handling here
         }
 
-
-        Log.d(TAG,text.toString());
 //Set the text
-        tv.setText(text.toString());
+        TextView tv=(TextView) getActivity().findViewById(R.id.result0);
+        tv.setText(text.get(0));
+        tv=(TextView) getActivity().findViewById(R.id.result1);
+        tv.setText(text.get(1));
+        tv=(TextView) getActivity().findViewById(R.id.result2);
+        tv.setText(text.get(2));
+        tv=(TextView) getActivity().findViewById(R.id.result3);
+        tv.setText(text.get(3));
+        tv=(TextView) getActivity().findViewById(R.id.result4);
+        tv.setText(text.get(4));
+        tv=(TextView) getActivity().findViewById(R.id.result5);
+        tv.setText(text.get(5));
+        tv=(TextView) getActivity().findViewById(R.id.result6);
+        tv.setText(text.get(6));
+        tv=(TextView) getActivity().findViewById(R.id.result7);
+        tv.setText(text.get(7));
+        tv=(TextView) getActivity().findViewById(R.id.result8);
+        tv.setText(text.get(8));
+        tv=(TextView) getActivity().findViewById(R.id.result9);
+        tv.setText(text.get(9));
+        tv=(TextView) getActivity().findViewById(R.id.result10);
+        tv.setText(text.get(10));
+        tv=(TextView) getActivity().findViewById(R.id.result11);
+        tv.setText(text.get(11));
+        tv=(TextView) getActivity().findViewById(R.id.result12);
+        tv.setText(text.get(12));
+        tv=(TextView) getActivity().findViewById(R.id.result13);
+        tv.setText(text.get(13));
+        tv=(TextView) getActivity().findViewById(R.id.result14);
+        tv.setText(text.get(14));
 
 
     }

@@ -5,6 +5,7 @@ import android.content.res.AssetManager;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.os.Environment;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -34,7 +35,7 @@ public class DisplayView extends View {
 
         String baseDir= Environment.getExternalStorageDirectory().getAbsolutePath();
 
-        String file_name=baseDir+context.getResources().getString(R.string.curve_file_name);
+        String file_name = "sdcard/billiard_data/curveData.csv";
 
 //        AssetManager assetManager = context.getAssets();
 
@@ -65,8 +66,33 @@ public class DisplayView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
+        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paint.setTextSize(20.f);
+        paint.setTextAlign(Paint.Align.CENTER);
+
         int height = canvas.getHeight();
         int width = canvas.getWidth();
+
+        // Draw background
+        paint.setColor(Color.BLACK);
+        paint.setStyle(Paint.Style.FILL);
+        canvas.drawRect(new Rect(0, 0, width -1, height -1), paint);
+
+        // Draw x label grids
+        paint.setColor(Color.GREEN);
+        paint.setStrokeWidth(1);
+        canvas.drawLine(0, 0, width - 1, 0, paint);
+        canvas.drawLine(0, height /4, width - 1, height /4, paint);
+        canvas.drawLine(0, height /2, width - 1, height /2, paint);
+        canvas.drawLine(0, 3* height /4, width - 1,  3* height /4, paint);
+        canvas.drawLine(0, height -1, width - 1,  height -1, paint);
+
+        canvas.drawLine(0, 0, 0, height - 1, paint);
+        canvas.drawLine(width/4, 0, width/4, height - 1, paint);
+        canvas.drawLine(width/2, 0, width/2, height - 1, paint);
+        canvas.drawLine(3*width/4, 0, 3*width/4, height - 1, paint);
+        canvas.drawLine(width - 1, 0, width - 1, height - 1, paint);
+
 
         float time_span=time.get(time.size() - 1)-time.get(0);
 //        float height_span=find_max(acc)-find_min(acc);
@@ -74,18 +100,31 @@ public class DisplayView extends View {
         height_span=height_span*(float)2.1;
 
 
+        paint.setTextSize(50f);
+        // x label
+        canvas.drawText("0.0", 60, height-5, paint);
+        canvas.drawText(""+time.size()/4/50.0, 15 + width/4, height-5, paint);
+        canvas.drawText(""+time.size()/2/50.0, 15 + width/2, height-5, paint);
+        canvas.drawText(""+3*time.size()/4/50.0, 3*width/4, height-5, paint);
+        canvas.drawText(""+time.size()/50.0, width - 15, height-5, paint);
+        // y label
+        canvas.drawText(""+(int)(height_span/2.1), 20, height - 50, paint);
+        canvas.drawText(""+(int)(height_span/4.2), 20, 3*height/4, paint);
+        canvas.drawText(""+0, 20, height/2, paint);
+        canvas.drawText("-"+(int)(height_span/4.2), 20, height/4, paint);
+        canvas.drawText("-"+(int)(height_span/2.1), 20, 50, paint);
+
+        paint.setStrokeWidth(5);
         for(int i=1;i<time.size();i++){
             float prev_x=(time.get(i-1)-time.get(0))/time_span*width;
-            float prev_y=(acc.get(i-1))/height_span*height+height/2;
+            float prev_y=-(acc.get(i-1))/height_span*height+height/2;
 
             float cur_x=(time.get(i)-time.get(0))/time_span*width;
-            float cur_y=(acc.get(i))/height_span*height+height/2;
+            float cur_y=-(acc.get(i))/height_span*height+height/2;
 
-            Paint pt=new Paint(Color.BLUE);
-            canvas.drawLine(prev_x,prev_y,cur_x,cur_y,pt);
+            paint.setColor(Color.RED);
+            canvas.drawLine(prev_x,prev_y,cur_x,cur_y, paint);
         }
-        Paint pt=new Paint(Color.RED);
-        canvas.drawLine(0,height/2,width,height/2,pt);
 
     }
 
