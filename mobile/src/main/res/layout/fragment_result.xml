@@ -241,19 +241,21 @@
 
         <TableRow>
             <TextView
-                android:text="Stroke Quality Score:"
+                android:text="Stroke Score:"
                 android:padding="3dip"
-                android:textSize="16sp"
-                android:textStyle="normal|bold" />
+                android:textSize="20sp"
+                android:textStyle="normal|bold"
+                android:layout_height="80sp" />
 
             <TextView
                 android:text="0.0"
                 android:gravity="right"
                 android:padding="3dip"
-                android:textSize="16sp"
+                android:textSize="30sp"
                 android:textStyle="normal|bold"
                 android:id="@+id/result14"
-                android:textColor="@color/colorAccent" />
+                android:textColor="@color/colorAccent"
+                android:layout_height="80sp" />
         </TableRow>
     </TableLayout>
 
