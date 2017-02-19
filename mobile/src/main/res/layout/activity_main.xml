@@ -46,7 +46,7 @@
     </LinearLayout>
 
     <TextView
-        android:text="Instructions:\n1-Control: open interface to start recording\n2- Display:plots of the data collected.\n3- Analyze: tatsics on the data recorded"
+        android:text="Instructions:\n1-Control: open interface to start recording\n2- Display:plots of the data collected.\n3- Analyze: statsics on the data recorded"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/textView"
