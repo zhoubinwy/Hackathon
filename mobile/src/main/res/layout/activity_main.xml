@@ -35,14 +35,14 @@
             android:layout_height="wrap_content"
             android:text="display"
             android:onClick="show_display_fragment"/>
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="analyze"
-            android:onClick="show_analyze_fragment"/>
+            android:onClick="show_analyze_fragment"
+            android:gravity="right|center_vertical|center_horizontal" />
     </LinearLayout>
-
-
 
 
     <!--<fragment android:name="smart.billard.ControlFragment"-->

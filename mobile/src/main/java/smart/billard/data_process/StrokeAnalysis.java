@@ -274,13 +274,13 @@ public class StrokeAnalysis {
             sb.append("mainAccRatio" + "," + this.getMajorAccRatio() + "\n");
             sb.append("forwardStartTime" + "," + this.getStartTime() + "\n");
             sb.append("hitBallTime" + "," + this.getHitTime() + "\n");
+            sb.append("finishBallTime" + "," + this.getStopTime() + "\n");
             sb.append("forwardDuration" + "," + (this.getHitTime() - this.getStartTime()) + "\n");
             sb.append("deaccelerationDuration" + "," + (this.getStopTime() - this.getHitTime()) + "\n");
-            sb.append("strokeScore" + "," + this.getScore() + "\n");
             sb.append("rollAngle" + "," + this.getStartRollAngle() + " ~ " + this.getHitRollAngle() + "\n");
             sb.append("lateralAngle" + "," + this.getStartLateralAngle() + " ~ " + this.getHitLateralAngle() + "\n");
             sb.append("verticalAngle" + "," + this.getStartVerticalAngle() + " ~ " + this.getHitVertialAngle() + "\n");
-
+            sb.append("strokeScore" + "," + this.getScore() + "\n");
             BufferedWriter out = new BufferedWriter(fstream);
             out.write(sb.toString());
             out.close();

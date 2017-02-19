@@ -5,10 +5,255 @@
     tools:context="smart.billard.ResultFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/results"
-        android:text=" " />
+        android:stretchColumns="1">
+        <TableRow>
+            <TextView
+                android:text="Stroke Number:"
+                android:padding="3dip"
+                android:textSize="16sp"
+                android:textStyle="normal|bold" />
+            <TextView
+                android:text="0"
+                android:gravity="right"
+                android:padding="3dip"
+                android:textSize="16sp"
+                android:textStyle="normal|bold"
+                android:id="@+id/result0"
+                android:textAlignment="textEnd" />
+        </TableRow>
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+
+        <TableRow>
+            <TextView
+                android:text="Acc_X Average:"
+                android:padding="3dip"
+                android:textSize="16sp"
+                android:textStyle="normal|bold" />
+            <TextView
+                android:text="0.0"
+                android:gravity="right"
+                android:padding="3dip"
+                android:textSize="16sp"
+                android:textStyle="normal|bold"
+                android:id="@+id/result1"
+                android:textAlignment="textEnd" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="Acc_X Peak:"
+                android:padding="3dip"
+                android:textSize="16sp"
+                android:textStyle="normal|bold" />
+            <TextView
+                android:text="0.0"
+                android:gravity="right"
+                android:padding="3dip"
+                android:textSize="16sp"
+                android:textStyle="normal|bold"
+                android:id="@+id/result2"
+                android:textAlignment="textEnd" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="Lateral Acc Average:"
+                android:padding="3dip"
+                android:textSize="16sp"
+                android:textStyle="normal|bold" />
+            <TextView
+                android:text="0.0"
+                android:gravity="right"
+                android:padding="3dip"
+                android:textSize="16sp"
+                android:textStyle="normal|bold"
+                android:id="@+id/result3" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="Vertical Acc Average:"
+                android:padding="3dip"
+                android:textSize="16sp"
+                android:textStyle="normal|bold" />
+            <TextView
+                android:text="0.0"
+                android:gravity="right"
+                android:padding="3dip"
+                android:textSize="16sp"
+                android:textStyle="normal|bold"
+                android:id="@+id/result4" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="Acc_X / Total Ratio:"
+                android:padding="3dip"
+                android:textSize="16sp"
+                android:textStyle="normal|bold" />
+            <TextView
+                android:text="0.0"
+                android:gravity="right"
+                android:padding="3dip"
+                android:textSize="16sp"
+                android:textStyle="normal|bold"
+                android:id="@+id/result5" />
+        </TableRow>
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+
+        <TableRow>
+            <TextView
+                android:text="Stroke Start Time:"
+                android:padding="3dip"
+                android:textSize="16sp"
+                android:textStyle="normal|bold" />
+            <TextView
+                android:text="0.0"
+                android:gravity="right"
+                android:padding="3dip"
+                android:textSize="16sp"
+                android:textStyle="normal|bold"
+                android:id="@+id/result6" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="Ball Hitting Time:"
+                android:padding="3dip"
+            android:textSize="16sp"
+            android:textStyle="normal|bold" />
+            <TextView
+                android:text="0.0"
+                android:gravity="right"
+                android:padding="3dip"
+            android:textSize="16sp"
+            android:textStyle="normal|bold"
+                android:id="@+id/result7" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="Stroke Finish Time:"
+                android:padding="3dip"
+            android:textSize="16sp"
+            android:textStyle="normal|bold" />
+            <TextView
+                android:text="0.0"
+                android:gravity="right"
+                android:padding="3dip"
+            android:textSize="16sp"
+            android:textStyle="normal|bold"
+                android:id="@+id/result8" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="Acceleration Duration:"
+                android:padding="3dip"
+            android:textSize="16sp"
+            android:textStyle="normal|bold" />
+            <TextView
+                android:text="0.0"
+                android:gravity="right"
+                android:padding="3dip"
+            android:textSize="16sp"
+            android:textStyle="normal|bold"
+                android:id="@+id/result9" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="Deceleration Duration:"
+                android:padding="3dip"
+            android:textSize="16sp"
+            android:textStyle="normal|bold" />
+            <TextView
+                android:text="0.0"
+                android:gravity="right"
+                android:padding="3dip"
+            android:textSize="16sp"
+            android:textStyle="normal|bold"
+                android:id="@+id/result10" />
+        </TableRow>
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+
+        <TableRow>
+            <TextView
+                android:text="Roll Angle Range:"
+                android:padding="3dip"
+            android:textSize="16sp"
+            android:textStyle="normal|bold" />
+            <TextView
+                android:text="0.0 ~ 0.0"
+                android:gravity="right"
+                android:padding="3dip"
+            android:textSize="16sp"
+            android:textStyle="normal|bold"
+                android:id="@+id/result11" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="Lateral Angle Range:"
+                android:padding="3dip"
+            android:textSize="16sp"
+            android:textStyle="normal|bold" />
+            <TextView
+                android:text="0.0 ~ 0.0"
+                android:gravity="right"
+                android:padding="3dip"
+            android:textSize="16sp"
+            android:textStyle="normal|bold"
+                android:id="@+id/result12" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="Vertial Angle Range:"
+                android:padding="3dip"
+            android:textSize="16sp"
+            android:textStyle="normal|bold" />
+            <TextView
+                android:text="0.0 ~ 0.0"
+                android:gravity="right"
+                android:padding="3dip"
+                android:textSize="16sp"
+                android:textStyle="normal|bold"
+                android:id="@+id/result13" />
+        </TableRow>
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+
+        <TableRow>
+            <TextView
+                android:text="Shoke Quality Score:"
+                android:padding="3dip"
+                android:textSize="16sp"
+                android:textStyle="normal|bold" />
+
+            <TextView
+                android:text="0.0"
+                android:gravity="right"
+                android:padding="3dip"
+                android:textSize="16sp"
+                android:textStyle="normal|bold"
+                android:id="@+id/result14" />
+        </TableRow>
+    </TableLayout>
 
 </FrameLayout>
