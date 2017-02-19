@@ -9,7 +9,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="smart.billard.MainActivity"
-    android:id="@+id/main_container">
+    android:id="@+id/main_container"
+    android:weightSum="1">
 
     <!--<TextView-->
         <!--android:layout_width="wrap_content"-->
@@ -24,12 +25,20 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.48" />
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="control"
             android:onClick="show_control_fragment"/>
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -43,6 +52,13 @@
             android:onClick="show_analyze_fragment"
             android:gravity="right|center_vertical|center_horizontal" />
     </LinearLayout>
+
+    <TextView
+        android:text="Instructions:\n1-Control: open interface to start recording\n2- Display:plots of the data collected.\n3- Analyze: statsics on the data recorded"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:layout_weight="0.35" />
 
 
     <!--<fragment android:name="smart.billard.ControlFragment"-->
