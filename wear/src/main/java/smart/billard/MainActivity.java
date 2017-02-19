@@ -29,11 +29,11 @@ public class MainActivity extends Activity {
     SensorManager sensorManager;
     //	Sensor mag_sensor;
     Sensor acc_uncalib_sensor;
-    Sensor gyro_uncalib_sensor;
+    Sensor game_uncalib_sensor;
     Sensor grav_uncalib_sensor;
 
     File acc_file;
-    File gyro_file;
+    File game_file;
     File grav_file;
 
     public String folder_name;
@@ -50,7 +50,7 @@ public class MainActivity extends Activity {
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
         acc_uncalib_sensor = sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
-        gyro_uncalib_sensor = sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
+        game_uncalib_sensor = sensorManager.getDefaultSensor(Sensor.TYPE_GAME_ROTATION_VECTOR);
         grav_uncalib_sensor = sensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY);
 
 
@@ -96,25 +96,38 @@ public class MainActivity extends Activity {
 
 
             sensorManager.unregisterListener(acc_uncali_Listener);
-            sensorManager.unregisterListener(gyro_uncali_Listener);
+            sensorManager.unregisterListener(game_uncali_Listener);
             sensorManager.unregisterListener(grav_uncali_Listener);
             if(acc_file!=null && acc_file.exists()){
                 acc_file=null;
             }
-            if(gyro_file!=null && gyro_file.exists()){
-                gyro_file=null;
+            if(game_file!=null && game_file.exists()){
+                game_file=null;
             }
             if(grav_file!=null && grav_file.exists()){
                 grav_file=null;
             }
 
             acc_file=new File(folder_name+"acc"+".csv");
+            if(acc_file.exists()){
+                acc_file.delete();
+            }
+            acc_file=new File(folder_name+"acc"+".csv");
             grav_file=new File(folder_name+"grav"+".csv");
-            gyro_file=new File(folder_name+"gyro"+".csv");
+            if(grav_file.exists()){
+                grav_file.delete();
+            }
+            grav_file=new File(folder_name+"grav"+".csv");
+            game_file=new File(folder_name+"game"+".csv");
+
+            if(game_file.exists()){
+                game_file.delete();
+            }
+            game_file=new File(folder_name+"game"+".csv");
 
             sensorManager.registerListener(acc_uncali_Listener, acc_uncalib_sensor,
                     SensorManager.SENSOR_DELAY_GAME);
-            sensorManager.registerListener(gyro_uncali_Listener, gyro_uncalib_sensor,
+            sensorManager.registerListener(game_uncali_Listener, game_uncalib_sensor,
                     SensorManager.SENSOR_DELAY_GAME);
             sensorManager.registerListener(grav_uncali_Listener, grav_uncalib_sensor,
                     SensorManager.SENSOR_DELAY_GAME);
@@ -124,13 +137,13 @@ public class MainActivity extends Activity {
         }
         else{
             sensorManager.unregisterListener(acc_uncali_Listener);
-            sensorManager.unregisterListener(gyro_uncali_Listener);
+            sensorManager.unregisterListener(game_uncali_Listener);
             sensorManager.unregisterListener(grav_uncali_Listener);
             if(acc_file!=null && acc_file.exists()){
                 acc_file=null;
             }
-            if(gyro_file!=null && gyro_file.exists()){
-                gyro_file=null;
+            if(game_file!=null && game_file.exists()){
+                game_file=null;
             }
             if(grav_file!=null && grav_file.exists()){
                 grav_file=null;
@@ -169,11 +182,11 @@ public class MainActivity extends Activity {
             write_file(grav_file,event);
         }
     };
-    SensorEventListener gyro_uncali_Listener = new SensorEventListener() {
+    SensorEventListener game_uncali_Listener = new SensorEventListener() {
         public void onAccuracyChanged(Sensor sensor, int acc) { }
 
         public void onSensorChanged(SensorEvent event) {
-            write_file(gyro_file,event);
+            write_file(game_file,event);
         }
     };
 
