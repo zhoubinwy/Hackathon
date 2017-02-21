@@ -61,7 +61,6 @@ public class DisplayView extends View {
 //            Log.d(TAG,((String)curve_data.get(i)).split(",")[0]);
         }
 
-
     }
 
     protected void onDraw(Canvas canvas) {
@@ -126,9 +125,6 @@ public class DisplayView extends View {
             paint.setColor(Color.RED);
             canvas.drawLine(prev_x,prev_y,cur_x,cur_y, paint);
         }
-
-        RatingBar bar = (RatingBar) findViewById(R.id.ratingBar);
-//        bar.setNumStars(5);
 
     }
 

@@ -238,7 +238,7 @@ public class StrokeAnalysis {
     // Read gyro data from files
     private void initializeGyro(String file_path) {
         // path for files
-        String path = file_path + "gyro.csv";
+        String path = file_path + "game.csv";
         // arrayLists to store acceleration data
         gyro_t = new ArrayList<>();
         gyro_x = new ArrayList<>();
@@ -280,7 +280,7 @@ public class StrokeAnalysis {
             sb.append("hitBallTime" + "," + this.getHitTime() + "\n");
             sb.append("finishBallTime" + "," + this.getStopTime() + "\n");
             sb.append("forwardDuration" + "," + Float.parseFloat(format.format((this.getHitTime() - this.getStartTime()))) + "\n");
-            sb.append("deaccelerationDuration" + "," + (this.getStopTime() - this.getHitTime()) + "\n");
+            sb.append("deaccelerationDuration" + "," + Float.parseFloat(format.format((this.getStopTime() - this.getHitTime()))) + "\n");
             sb.append("rollAngle" + "," + this.getStartRollAngle() + " ~ " + this.getHitRollAngle() + "\n");
             sb.append("lateralAngle" + "," + this.getStartLateralAngle() + " ~ " + this.getHitLateralAngle() + "\n");
             sb.append("verticalAngle" + "," + this.getStartVerticalAngle() + " ~ " + this.getHitVertialAngle() + "\n");

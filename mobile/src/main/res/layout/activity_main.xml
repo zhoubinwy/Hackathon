@@ -53,13 +53,6 @@
             android:gravity="right|center_vertical|center_horizontal" />
     </LinearLayout>
 
-    <TextView
-        android:text="Instructions:\n1-Control: open interface to start recording\n2- Display:plots of the data collected.\n3- Analyze: statsics on the data recorded"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView"
-        android:layout_weight="0.35" />
-
 
     <!--<fragment android:name="smart.billard.ControlFragment"-->
         <!--android:id="@+id/contrl_fragment"-->

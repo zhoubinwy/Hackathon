@@ -9,9 +9,11 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Vibrator;
+import android.support.annotation.RequiresApi;
 import android.text.format.Time;
 import android.util.Log;
 import android.view.View;
@@ -38,6 +40,7 @@ public class MainActivity extends Activity {
 
     public String folder_name;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -172,30 +175,45 @@ public class MainActivity extends Activity {
         public void onAccuracyChanged(Sensor sensor, int acc) { }
 
         public void onSensorChanged(SensorEvent event) {
-            write_file(acc_file,event);
+            write_file(acc_file,event,1);
         }
     };
     SensorEventListener grav_uncali_Listener = new SensorEventListener() {
         public void onAccuracyChanged(Sensor sensor, int acc) { }
 
         public void onSensorChanged(SensorEvent event) {
-            write_file(grav_file,event);
+            write_file(grav_file,event,1);
         }
     };
     SensorEventListener game_uncali_Listener = new SensorEventListener() {
         public void onAccuracyChanged(Sensor sensor, int acc) { }
 
         public void onSensorChanged(SensorEvent event) {
-            write_file(game_file,event);
+            write_file(game_file,event,2);
         }
     };
 
-    private void write_file(File f,SensorEvent event){
+    private void write_file(File f,SensorEvent event, int flag){
         long time=event.timestamp;
-        float x = event.values[0];
-        float y = event.values[1];
-        float z = event.values[2];
+        float x = 0f;
+        float y = 0f;
+        float z = 0f;
 
+        if(flag == 2) {
+            float[] orientationVals = new float[3];
+            float[] mRotationMatrix = new float[16];
+            SensorManager.getRotationMatrixFromVector(mRotationMatrix, event.values);
+            SensorManager.getOrientation(mRotationMatrix, orientationVals);
+            // Optionally convert the result from radians to degrees
+            x = (float) Math.toDegrees(orientationVals[0]);
+            y = (float) Math.toDegrees(orientationVals[1]);
+            z = (float) Math.toDegrees(orientationVals[2]);
+        }
+        else {
+             x = event.values[0];
+             y = event.values[1];
+             z = event.values[2];
+        }
 
         StringBuilder content=new StringBuilder();
         content.append(time);
